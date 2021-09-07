@@ -1,0 +1,31 @@
+nameOverride: sub-topology-customers-lookup
+
+replicaCount: 1
+
+image: url-to-container-registry.com/sub-topologies-customers-orders-demo
+imageTag: latest
+
+streams:
+  brokers: ""
+  schemaRegistryUrl: ""
+  inputTopics:
+    - orders-demo-topic
+  extraInputTopics:
+    customers: customers-demo-topic
+  outputTopic: intermediate-demo-topic
+  config:
+    replication.factor: 1
+
+commandLine:
+  TOPOLOGY_PART: "CUSTOMERS_LOOKUP"
+
+annotations:
+  consumerGroup: "sub-topologies-intermediate-demo-topic"
+
+autoscaling:
+  enabled: true
+  idleReplicas: 0
+  minReplicas: 5
+  maxReplicas: 5
+  lagThreshold: "10"
+  consumergroup: "sub-topologies-intermediate-demo-topic"
