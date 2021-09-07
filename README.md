@@ -10,7 +10,7 @@ Demo application for the blogpost: "Optimizing Kafka Streams Topologies running 
   * bakdata Helm Charts
     which can be added with: 
 ```
-helm repo add bakdata-common https://raw.githubusercontent.com/bakdata/common-kafka-streams/master/charts/
+helm repo add bakdata-common https://raw.githubusercontent.com/bakdata/streams-bootstrap/master/charts
 ```
 ---
 
