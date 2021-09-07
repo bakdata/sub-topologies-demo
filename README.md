@@ -18,15 +18,11 @@ helm repo add bakdata-common https://raw.githubusercontent.com/bakdata/common-ka
 
 We provide schemas for the [Avro Random Generator](https://github.com/confluentinc/avro-random-generator) in `./data-gen`. The [Datagen Source Connector](https://docs.confluent.io/kafka-connect-datagen/current/index.html) by Confluent and their [ksql-datagen tool](https://docs.confluent.io/4.1.1/ksql/docs/tutorials/generate-custom-test-data.html) can use those provided schemas to generate the data into input topics. 
 
-## Build and Push Docker Image
-
-We use jib to build the application 
-
-### Build
+## Build
 
 We use [jib](https://github.com/GoogleContainerTools/jib) to build the application and push it to a docker registry.
 
-### Deploy
+## Deploy
 
 We provide 3 different example deployments in `./deployments`:
 
