@@ -35,5 +35,5 @@ Before deployment you must change the brokers, Schemaregistry URL, and image val
 Using Helm, we can then deploy the application to Kubernetes:
 
 ```
-helm upgrade --debug --install --force --values values-all.yaml complete-topology --namespace {namespace}
+helm upgrade --debug --install --force --values values-all.yaml complete-topology bakdata-common/streams-app --namespace {namespace}
 ```
