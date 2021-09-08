@@ -2,12 +2,9 @@ nameOverride: sub-topology-long-running
 
 replicaCount: 0
 
-image: url-to-container-registry.com/sub-topologies-customers-orders-demo
 imageTag: latest
 
 streams:
-  brokers: ""
-  schemaRegistryUrl: ""
   inputTopics:
     - intermediate-demo-topic
   outputTopic: demo-output-topic

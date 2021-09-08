@@ -2,13 +2,13 @@ package com.bakdata.kafka;
 
 import com.bakdata.fluent_kafka_streams_tests.junit5.TestTopologyExtension;
 import com.bakdata.kafka.SplitSubTopologiesDemo.TopologyPart;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import java.util.List;
 import java.util.Map;
 import org.apache.avro.specific.SpecificRecord;
 import org.assertj.core.api.SoftAssertions;
-import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.assertj.core.api.junit.jupiter.InjectSoftAssertions;
+import org.assertj.core.api.junit.jupiter.SoftAssertionsExtension;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -28,7 +28,7 @@ class SplitSubTopologiesDemoTest {
     final TestTopologyExtension<String, SpecificRecord> topology =
             new TestTopologyExtension<>(p -> {
                 this.subTopologyDemo
-                        .setSchemaRegistryUrl(p.getProperty(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG));
+                        .setSchemaRegistryUrl(p.getProperty(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG));
                 return this.subTopologyDemo.createTopology();
             }, this.subTopologyDemo.getKafkaProperties());
 
@@ -43,7 +43,6 @@ class SplitSubTopologiesDemoTest {
 
     @Test
     void shouldProduceOrderWithoutCustomerInfo() {
-
         this.topology.input(INPUT_TOPIC)
                 .add("order_001", TestUtils.getTestOrder("order_001",
                         "customer_001", "product_001"));

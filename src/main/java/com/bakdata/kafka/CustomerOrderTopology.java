@@ -1,10 +1,7 @@
 package com.bakdata.kafka;
 
 import java.time.Duration;
-import java.util.Map;
-import java.util.function.Function;
-import lombok.Builder;
-import lombok.NonNull;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -13,12 +10,9 @@ import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Named;
 
 @Slf4j
-@Builder
+@UtilityClass
 public class CustomerOrderTopology {
     private static final long WAIT_MS = Duration.ofSeconds(1).toMillis();
-    private final @NonNull Function<String, String> getInputTopicByRole;
-    private final @NonNull Map<String, Object> streamsConfigs;
-
 
     public static KStream<String, JoinedOrderCustomer> buildLongRunningSubtopolgy(
             final KStream<String, ? extends JoinedOrderCustomer> input) {
@@ -32,6 +26,7 @@ public class CustomerOrderTopology {
             Thread.sleep(WAIT_MS);
 
         } catch (final InterruptedException e) {
+            Thread.currentThread().interrupt();
             log.error("Could not wait for {} ms", WAIT_MS, e);
         }
         return KeyValue.pair(joinedOrderCustomer.getCustomerId(), joinedOrderCustomer);
@@ -50,10 +45,10 @@ public class CustomerOrderTopology {
         return joined.build();
     }
 
-    public KStream<String, JoinedOrderCustomer> buildOrderCustomerJoiner(final StreamsBuilder builder,
-            final KStream<String, Order> input) {
+    public static KStream<String, JoinedOrderCustomer> buildOrderCustomerJoiner(final StreamsBuilder builder,
+            final KStream<String, Order> input, final String customersInputTopic) {
 
-        final KTable<String, Customer> customerKTable = builder.<String, Customer>stream(this.getInputTopic("customers"))
+        final KTable<String, Customer> customerKTable = builder.<String, Customer>stream(customersInputTopic)
                 .toTable(Named.as("customers-ktable"));
 
         return input
@@ -61,7 +56,4 @@ public class CustomerOrderTopology {
                 .leftJoin(customerKTable, CustomerOrderTopology::join);
     }
 
-    private String getInputTopic(final String topic) {
-        return this.getInputTopicByRole.apply(topic);
-    }
 }

@@ -1,9 +1,9 @@
 description = "Optimizing Kafka Streams Topologies running on Kubernetes"
 plugins {
     java
-    id("io.freefair.lombok") version "5.1.0"
+    id("io.freefair.lombok") version "5.3.3.3"
     id("com.google.cloud.tools.jib") version "3.1.4"
-    id("com.github.davidmc24.gradle.plugin.avro") version "1.2.0"
+    id("com.github.davidmc24.gradle.plugin.avro") version "1.2.1"
 }
 
 group = "com.bakdata.kafka"
@@ -15,7 +15,7 @@ tasks.withType<Test> {
 
 repositories {
     mavenCentral()
-    maven(url = "http://packages.confluent.io/maven/")
+    maven(url = "https://packages.confluent.io/maven/")
 }
 
 
@@ -30,7 +30,6 @@ dependencies {
     implementation(group = "info.picocli", name = "picocli", version = "4.6.1")
     implementation(group = "com.bakdata.kafka", name = "streams-bootstrap", version = "1.8.0")
     implementation(group = "com.bakdata.kafka", name = "error-handling", version = "1.0.0")
-    implementation(group = "org.slf4j", name = "slf4j-log4j12", version = "1.7.26")
     implementation(group = "com.bakdata.seq2", name = "seq2", version = "1.0.0")
 
     val junitVersion: String by project

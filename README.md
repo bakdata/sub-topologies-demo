@@ -30,10 +30,13 @@ We provide 3 different example deployments in `./deployments`:
 - `values-customer-lookup.yaml`: Deployment for the first sub-topology performing the customer lookup
 - `values-long-running.yaml`: Deployment for the second, long-running sub-topology
 
-Before deployment you must change the brokers, Schemaregistry URL, and image values in the corresponding value files.
-
 Using Helm, we can then deploy the application to Kubernetes:
 
 ```
-helm upgrade --debug --install --force --values values-all.yaml complete-topology bakdata-common/streams-app --namespace {namespace}
+helm upgrade --debug --install --force \
+ --values values-all.yaml \
+ --set image={image}
+ --set streams.brokers={broker}
+ --set streams.schemaRegistryUrl={schemaRegistryUrl}
+ complete-topology bakdata-common/streams-app --namespace {namespace}
 ```

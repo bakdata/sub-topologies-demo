@@ -2,12 +2,9 @@ nameOverride: sub-topology-all
 
 replicaCount: 1
 
-image: url-to-container-registry.com/sub-topologies-customers-orders-demo
 imageTag: latest
 
 streams:
-  brokers: ""
-  schemaRegistryUrl: ""
   inputTopics:
     - orders-demo-topic
   extraInputTopics:
