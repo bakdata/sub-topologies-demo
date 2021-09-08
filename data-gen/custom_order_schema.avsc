@@ -1,0 +1,46 @@
+{
+  "type": "record",
+  "name": "Order",
+  "namespace": "com.bakdata.kafka",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "order_[0-1]{1}[0-9]{5}"
+        }
+      }
+    },
+    {
+      "name": "productId",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "product_[0-9]{4}"
+        }
+      }
+    },
+    {
+      "name": "customerId",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "customer_[0-9]{5}"
+        }
+      }
+    },
+    {
+      "name": "total_price",
+      "type": {
+        "type": "double",
+        "arg.properties": {
+          "range": {
+            "min": 0.0,
+            "max": 1000.0
+          }
+        }
+      }
+    }
+  ]
+}

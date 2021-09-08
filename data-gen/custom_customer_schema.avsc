@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "Customer",
+  "namespace": "com.bakdata.kafka",
+  "fields": [
+    {
+      "name": "customerId",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "customer_[0-9]{5}"
+        }
+      }
+    },
+    {
+      "name": "region",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "options": [
+            "Northern Africa",
+            "Sub-Saharan Africa",
+            "Latin America and the Caribbean",
+            "Northern America",
+            "Central Asia",
+            "Eastern Asia",
+            "South-eastern Asia",
+            "Southern Asia",
+            "Western Asia",
+            "Eastern Europe",
+            "Northern Europe",
+            "Southern Europe",
+            "Western Europe",
+            "Australia and New Zealand",
+            "Melanesia",
+            "Micronesia",
+            "Polynesia"
+          ]
+        }
+      }
+    }
+  ]
+}

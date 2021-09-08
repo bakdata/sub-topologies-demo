@@ -1,0 +1,30 @@
+nameOverride: sub-topology-all
+
+replicaCount: 1
+
+imageTag: latest
+
+streams:
+  inputTopics:
+    - orders-demo-topic
+  extraInputTopics:
+    customers: customers-demo-topic
+  outputTopic: sub-topologies-demo-all
+  config:
+    replication.factor: 1
+
+annotations:
+  consumerGroup: "sub-topologies-all-output-topic"
+
+commandLine:
+  TOPOLOGY_PART: "ALL"
+
+autoscaling:
+  enabled: true
+  idleReplicas: 0
+  minReplicas: 5
+  maxReplicas: 5
+  lagThreshold: "10"
+  consumergroup: "sub-topologies-all-output-topic"
+
+debug: true

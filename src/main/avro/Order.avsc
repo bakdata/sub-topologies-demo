@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "Order",
+  "namespace": "com.bakdata.kafka",
+  "fields": [
+    {
+      "name": "orderId",
+      "type": "string"
+    },
+    {
+      "name": "productId",
+      "type": "string"
+    },
+    {
+      "name": "customerId",
+      "type": "string"
+    },
+    {
+      "name": "total_price",
+      "type": "double"
+    }
+  ]
+}
+

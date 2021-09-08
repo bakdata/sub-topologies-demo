@@ -1,0 +1,29 @@
+nameOverride: sub-topology-long-running
+
+replicaCount: 0
+
+imageTag: latest
+
+streams:
+  inputTopics:
+    - intermediate-demo-topic
+  outputTopic: demo-output-topic
+  config:
+    replication.factor: 1
+
+annotations:
+  consumerGroup: "sub-topologies-demo-output-topic"
+
+commandLine:
+  TOPOLOGY_PART: "LONG_RUNNING"
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 1
+  ideReplicas: 0
+  lagThreshold: "10"
+  consumergroup: "sub-topologies-demo-output-topic"
+
+
+debug: true
