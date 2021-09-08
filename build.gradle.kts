@@ -30,7 +30,7 @@ dependencies {
     implementation(group = "info.picocli", name = "picocli", version = "4.6.1")
     implementation(group = "com.bakdata.kafka", name = "streams-bootstrap", version = "1.8.0")
     implementation(group = "com.bakdata.kafka", name = "error-handling", version = "1.0.0")
-    implementation(group = "com.bakdata.seq2", name = "seq2", version = "1.0.0")
+    implementation(group = "org.jooq", name = "jool", version = "0.9.14")
 
     val junitVersion: String by project
     testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api", version = junitVersion)

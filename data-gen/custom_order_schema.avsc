@@ -4,14 +4,14 @@
   "namespace": "com.bakdata.kafka",
   "fields": [
     {
-       "name": "orderId",
-       "type": {
-         "type": "string",
-         "arg.properties": {
-           "regex": "order_[0-1]{1}[0-9]{5}"
-         }
-       }
-     },
+      "name": "orderId",
+      "type": {
+        "type": "string",
+        "arg.properties": {
+          "regex": "order_[0-1]{1}[0-9]{5}"
+        }
+      }
+    },
     {
       "name": "productId",
       "type": {
